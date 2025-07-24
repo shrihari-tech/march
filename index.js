@@ -4,7 +4,8 @@ const PORT = 5000;
 const userRoutes = require('./Routes/User');
 const taskRoutes = require('./Routes/Task');
 const mongoose = require('mongoose');
-
+const dotenv = require('dotenv');
+dotenv.config();
 app.use(express.json());
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
@@ -19,7 +20,7 @@ app.use('/task', taskRoutes);
 
 
 
-mongoose.connect('mongodb://localhost:27017/march')
+mongoose.connect(process.env.MONGO_URI)
 .then(()=>{
   console.log("DB Connected");
 })
